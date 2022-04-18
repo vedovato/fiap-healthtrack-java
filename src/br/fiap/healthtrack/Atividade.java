@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 import br.fiap.healthtrack.utils.DateTime;
 
+/**
+ * Abstração para Atividade física
+ */
 final class Atividade {
 	private String tipoMensuracao;
 	private String intensidade;
@@ -11,6 +14,13 @@ final class Atividade {
 	
 	ArrayList<Atividade> atividadeArray = new ArrayList<>();
 	
+	/**
+	 * Inclui atividade na lista de atividades
+	 * @param ex: Instancia de Exercicio
+	 * @param tipoMensuracao: Metros ou Kilometros
+	 * @param intensidade: Fácil/Regular/Difícil/Foo
+	 * @see classe Exercicio
+	 */
 	protected void adicionar(Exercicio ex, String tipoMensuracao, String intensidade) {
 		Atividade item = new Atividade();
 		item.setExercicio(ex);
@@ -22,6 +32,9 @@ final class Atividade {
 		atividadeArray.add(item);
 	}
 	
+	/**
+	 * Exibe todas as atividades registradas
+	 */
 	protected void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE ATIVIDADES -----");
 		
@@ -69,7 +82,11 @@ final class Atividade {
 	private String getDtInclusao() {
 		return dtInclusao;
 	}
-
+	
+	/**
+	 * Registra a data atual
+	 * @see br.fiap.healthtrack.utils
+	 */
 	private void setDtInclusao() {
 		this.dtInclusao = new DateTime().now();
 	}

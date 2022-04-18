@@ -3,12 +3,19 @@ import java.util.ArrayList;
 
 import br.fiap.healthtrack.utils.DateTime;
 
+/**
+ * Abstração para hidratação do dia
+ */
 final class Hidratacao {
 	private float quantidade;
 	private String dtInclusao;
 	
 	private ArrayList<Hidratacao> hidratacaoArray = new ArrayList<>();
 
+	/**
+	 * Inclui consumo de líquido
+	 * @param quantidade em ml
+	 */
 	protected void adicionar(float quantidade) {
 		Hidratacao item = new Hidratacao();
 		item.setQuantidade(quantidade);
@@ -18,6 +25,9 @@ final class Hidratacao {
 		hidratacaoArray.add(item);
 	}
 	
+	/**
+	 * Exibe total ingerido + histórico completo registrado
+	 */
 	protected void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE HIDRATAÇÃO -----");
 		
@@ -56,7 +66,11 @@ final class Hidratacao {
 	private String getDtInclusao() {
 		return dtInclusao;
 	}
-
+	
+	/**
+	 * Registra a data atual
+	 * @see br.fiap.healthtrack.utils
+	 */
 	private void setDtInclusao() {
 		this.dtInclusao = new DateTime().now();
 	}

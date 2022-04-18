@@ -1,5 +1,9 @@
 package br.fiap.healthtrack;
-public class Exercicio {
+
+/**
+ * Abstração para Exercicios físicos
+ */
+final class Exercicio {
 	private String nome;
 	private float quantidade;
 

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import br.fiap.healthtrack.utils.DateTime;
 
 /**
- * Classe de histórico de saúde
- * @version 1.0
- *
+ * Abstração para histórico de saúde
  */
 final class Historico {
  	private float altura;
@@ -16,7 +14,7 @@ final class Historico {
 	private ArrayList<Historico> historicoArray = new ArrayList<>();
 
 	/**
-	 * Adiciona um registro no histórico de saúde
+	 * Adiciona um registro no histórico
 	 * @param altura do usuario (ex: 1.72)
 	 * @param peso do usuario (ex: 88.4)
 	 */
@@ -31,7 +29,7 @@ final class Historico {
 	}
 	
 	/**
-	 * Exibe todo o histórico de saúde informado
+	 * Exibe todo o histórico inserido
 	 * @see adicionar
 	 */
 	protected void visualizar() {
@@ -46,8 +44,6 @@ final class Historico {
 			System.out.println(historico2.toString());
 		}
 	}
-	
-	// -----------------------------------------------
 	
 	/**
 	 * Calcula de forma simples o IMC estimado
@@ -64,6 +60,8 @@ final class Historico {
 		else if (imc >= 3 && imc <= 39.9) { return "Obesidade"; }
 		else { return "Obesidade grave"; }
 	}
+	
+	// -----------------------------------------------
 	
 	@Override
 	public String toString() {
@@ -90,6 +88,10 @@ final class Historico {
 		return dtInclusao;
 	}
 
+	/**
+	 * Registra a data atual
+	 * @see br.fiap.healthtrack.utils
+	 */
 	private void setDtInclusao() {
 		this.dtInclusao = new DateTime().now();
 	}

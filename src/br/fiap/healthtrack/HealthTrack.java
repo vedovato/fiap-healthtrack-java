@@ -1,4 +1,9 @@
 package br.fiap.healthtrack;
+
+/**
+ * Implementação do Diagrama de Classe do HealthTrack
+ * @author Grupo Firebug
+ */
 public class HealthTrack {
 
 	public static void main(String[] args) {

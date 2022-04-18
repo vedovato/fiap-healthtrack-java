@@ -1,6 +1,9 @@
 package br.fiap.healthtrack;
 import br.fiap.healthtrack.utils.DateTime;
 
+/**
+ * Abstração para Conta do sistema com agregação de Usuario
+ */
 public class Conta extends Usuario {
 	private String email;
 	private String senha;
@@ -20,6 +23,11 @@ public class Conta extends Usuario {
 		this.logado = false;
 	}
 	
+	/**
+	 * Simula login tradicional
+	 * @param telefone
+	 * @param senha
+	 */
 	public void login(String telefone, String senha) {
 		if(!this.getTelefone().equals(telefone) || this.getSenha() != senha) {
 			System.out.println("Usuário e/ou senha incorretos.");
@@ -32,6 +40,11 @@ public class Conta extends Usuario {
 		this.setLogado(true);
 	}
 	
+	/**
+	 * Simula login social
+	 * @param email
+	 * @param senha
+	 */
 	public void loginSocial(String email, String senha) {
 		if(this.getEmail() != email || this.getSenha() != senha) {
 			System.out.println("Login social inválido.");
@@ -44,6 +57,9 @@ public class Conta extends Usuario {
 		this.setLogado(true);
 	}
 	
+	/**
+	 * Realiza logout
+	 */
 	public void logout() {
 		if(!this.isLogado()) {
 			System.out.println("\nUsuário não está logado!");
@@ -53,6 +69,9 @@ public class Conta extends Usuario {
 		}
 	}
 	
+	/**
+	 * Desativa conta e realiza logout
+	 */
 	public void desativarConta() {
 		if(!this.getStatusPerfil()) {
 			System.out.println("Usuário inativo");
@@ -63,6 +82,9 @@ public class Conta extends Usuario {
 		this.logout();
 	}
 	
+	/**
+	 * Exibe todos os dados da conta de forma estruturada somente para usuário logado
+	 */
 	public void exibirDadosDaConta() {
 		System.out.println("\n----- DADOS DA CONTA -----");
 		
@@ -83,11 +105,19 @@ public class Conta extends Usuario {
 		System.out.println("Ultimo Login: " + this.parseUltimoLogin());
 	}
 	
+	/**
+	 * Realiza transformação de op. lógico para texto
+	 * @return Data do último login ou "Nunca"
+	 */
 	private String parseUltimoLogin() {
 		String login = this.getUltimoLogin() == null ? "Nunca" : this.getUltimoLogin();
 		return login;
 	}
 	
+	/**
+	 * Realiza transformação de op. lógico para texto
+	 * @return Ativo ou Inativo
+	 */
 	private String parseStatusPerfil() {
 		String status = this.getStatusPerfil() ? "ativo" : "inativo";
 		return status;
@@ -139,6 +169,10 @@ public class Conta extends Usuario {
 		return ultimoLogin;
 	}
 
+	/**
+	 * Registra a data atual
+	 * @see br.fiap.healthtrack.utils
+	 */
 	private void setUltimoLogin() {
 		this.ultimoLogin = new DateTime().now();
 	}
