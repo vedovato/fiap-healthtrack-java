@@ -1,5 +1,7 @@
+package br.fiap.healthtrack;
 import java.util.ArrayList;
-import utils.DateTime;
+
+import br.fiap.healthtrack.utils.DateTime;
 
 final class Atividade {
 	private String tipoMensuracao;

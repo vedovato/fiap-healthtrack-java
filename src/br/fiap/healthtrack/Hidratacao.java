@@ -1,6 +1,7 @@
+package br.fiap.healthtrack;
 import java.util.ArrayList;
 
-import utils.DateTime;
+import br.fiap.healthtrack.utils.DateTime;
 
 final class Hidratacao {
 	private float quantidade;

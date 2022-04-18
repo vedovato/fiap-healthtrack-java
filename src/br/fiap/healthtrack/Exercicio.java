@@ -1,3 +1,4 @@
+package br.fiap.healthtrack;
 public class Exercicio {
 	private String nome;
 	private float quantidade;

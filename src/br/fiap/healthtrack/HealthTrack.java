@@ -1,3 +1,4 @@
+package br.fiap.healthtrack;
 public class HealthTrack {
 
 	public static void main(String[] args) {

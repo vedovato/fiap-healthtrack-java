@@ -1,7 +1,13 @@
+package br.fiap.healthtrack;
 import java.util.ArrayList;
 
-import utils.DateTime;
+import br.fiap.healthtrack.utils.DateTime;
 
+/**
+ * Classe de histórico de saúde
+ * @version 1.0
+ *
+ */
 final class Historico {
  	private float altura;
 	private float peso;
@@ -9,6 +15,11 @@ final class Historico {
 	
 	private ArrayList<Historico> historicoArray = new ArrayList<>();
 
+	/**
+	 * Adiciona um registro no histórico de saúde
+	 * @param altura do usuario (ex: 1.72)
+	 * @param peso do usuario (ex: 88.4)
+	 */
 	protected void adicionar(float altura, float peso) {
 		Historico item = new Historico();
 		item.setDtInclusao();
@@ -19,6 +30,10 @@ final class Historico {
 		historicoArray.add(item);
 	}
 	
+	/**
+	 * Exibe todo o histórico de saúde informado
+	 * @see adicionar
+	 */
 	protected void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE SAÚDE -----");
 		
@@ -34,7 +49,11 @@ final class Historico {
 	
 	// -----------------------------------------------
 	
-	// https://calculosimples.com/imc.html
+	/**
+	 * Calcula de forma simples o IMC estimado
+	 * @see https://calculosimples.com/imc.html
+	 * @return Grau de obesidade aproximado
+	 */
 	private String exibirIMC() {
 		float alturaQuadrado = this.getAltura() * this.getAltura();
 		float imc =this.getPeso() / alturaQuadrado;
@@ -45,7 +64,7 @@ final class Historico {
 		else if (imc >= 3 && imc <= 39.9) { return "Obesidade"; }
 		else { return "Obesidade grave"; }
 	}
-
+	
 	@Override
 	public String toString() {
 		return this.getDtInclusao() + " | [altura=" + this.getAltura() + "cm, peso=" + this.getPeso() + "kg" + ", IMC=" + this.exibirIMC() + "]";
