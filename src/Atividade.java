@@ -1,36 +1,75 @@
-public class Atividade {
-	private String nome;
+import java.util.ArrayList;
+import utils.DateTime;
+
+final class Atividade {
 	private String tipoMensuracao;
-	
+	private String intensidade;
 	private Exercicio exercicio;
+	private String dtInclusao;
 	
-	protected void adicionar(String nome, Exercicio ex, String tipoMensuracao) {
-		System.out.println("add atividade");
-//		this.exercicio.teste();
+	ArrayList<Atividade> atividadeArray = new ArrayList<>();
+	
+	protected void adicionar(Exercicio ex, String tipoMensuracao, String intensidade) {
+		Atividade item = new Atividade();
+		item.setExercicio(ex);
+		item.setTipoMensuracao(tipoMensuracao);
+		item.setIntensidade(intensidade);
+		item.setDtInclusao();
+		
+		System.out.println("Você adicionou \"" + ex.getNome() + "\" com sucesso!");
+		atividadeArray.add(item);
 	}
 	
 	protected void visualizar() {
-		System.out.println("visualizar itens!");
+		System.out.println("\n----- HISTÓRICO DE ATIVIDADES -----");
+		
+		if(atividadeArray.size() == 0) {
+			System.out.println("Histórico vazio. Adicione uma atividade!");
+			return;
+		}
+		
+		for (Atividade atividade : atividadeArray) {
+			System.out.println(atividade.toString());
+		}
 	}
-	
-	public void remover() {}
 	
 	// -----------------------------------------------
 
-	public String getNome() {
-		return nome;
+	@Override
+	public String toString() {
+		return this.getDtInclusao() + " | [atividade=" + this.getExercicio().getNome() + ", dist/tempo=" + this.getExercicio().getQuantidade() + " " + this.getTipoMensuracao() + ", intensidade=" + this.getIntensidade() + "]";
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTipoMensuracao() {
+	private String getTipoMensuracao() {
 		return tipoMensuracao;
 	}
 
-	public void setTipoMensuracao(String tipoMensuracao) {
+	private void setTipoMensuracao(String tipoMensuracao) {
 		this.tipoMensuracao = tipoMensuracao;
 	}
 
+	private String getIntensidade() {
+		return intensidade;
+	}
+
+	private void setIntensidade(String intensidade) {
+		this.intensidade = intensidade;
+	}
+
+	private Exercicio getExercicio() {
+		return exercicio;
+	}
+
+	private void setExercicio(Exercicio exercicio) {
+		this.exercicio = exercicio;
+	}
+
+	private String getDtInclusao() {
+		return dtInclusao;
+	}
+
+	private void setDtInclusao() {
+		this.dtInclusao = new DateTime().now();
+	}
+	
 }

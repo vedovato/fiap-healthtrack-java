@@ -1,8 +1,8 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Historico {
+import utils.DateTime;
+
+final class Historico {
  	private float altura;
 	private float peso;
 	private String dtInclusao;
@@ -33,10 +33,22 @@ public class Historico {
 	}
 	
 	// -----------------------------------------------
+	
+	// https://calculosimples.com/imc.html
+	private String exibirIMC() {
+		float alturaQuadrado = this.getAltura() * this.getAltura();
+		float imc =this.getPeso() / alturaQuadrado;
+		
+		if(imc <= 18.5) { return "Magreza"; } 
+		else if (imc >= 18.5 && imc <= 24.9) { return "Normal"; }
+		else if (imc >= 25 && imc <= 29.9) { return "Sobrepeso"; }
+		else if (imc >= 3 && imc <= 39.9) { return "Obesidade"; }
+		else { return "Obesidade grave"; }
+	}
 
 	@Override
 	public String toString() {
-		return this.getDtInclusao() + " | [altura=" + this.getAltura() + ", peso=" + this.getPeso() + "]";
+		return this.getDtInclusao() + " | [altura=" + this.getAltura() + "cm, peso=" + this.getPeso() + "kg" + ", IMC=" + this.exibirIMC() + "]";
 	}
 	
 	private float getAltura() {
@@ -60,9 +72,7 @@ public class Historico {
 	}
 
 	private void setDtInclusao() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
-		LocalDateTime now = LocalDateTime.now();
-		this.dtInclusao = dtf.format(now);
+		this.dtInclusao = new DateTime().now();
 	}
 	
 }

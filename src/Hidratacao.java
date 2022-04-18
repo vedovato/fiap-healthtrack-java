@@ -1,8 +1,8 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Hidratacao {
+import utils.DateTime;
+
+final class Hidratacao extends Usuario {
 	private float quantidade;
 	private String dtInclusao;
 	
@@ -19,7 +19,7 @@ public class Hidratacao {
 	
 	protected void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE HIDRATAÇÃO -----");
-
+		
 		if(hidratacaoArray.size() == 0) {
 			System.out.println("Histórico vazio. Adicione um item!");
 			return;
@@ -57,9 +57,7 @@ public class Hidratacao {
 	}
 
 	private void setDtInclusao() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
-		LocalDateTime now = LocalDateTime.now();
-		this.dtInclusao = dtf.format(now);
+		this.dtInclusao = new DateTime().now();
 	}
 
 }

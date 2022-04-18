@@ -1,30 +1,28 @@
-
 public class Exercicio {
+	private String nome;
 	private float quantidade;
-	private Intensidade intensidade = new Intensidade(null, null);
 
-	public Exercicio(float quantidade, Intensidade intensidade) {
+	public Exercicio(String nome, float quantidade) {
 		this.setQuantidade(quantidade);
-//		intensidade(nome, emoji);
-	}
-	
-	protected void teste() {
-		System.out.println("teste ok");
+		this.setNome(nome);
+
 	}
 
-	public float getQuantidade() {
+	// -----------------------------------------------
+	
+	protected String getNome() {
+		return nome;
+	}
+
+	private void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	protected float getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(float quantidade) {
+	private void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public Intensidade getIntensidade() {
-		return intensidade;
-	}
-
-	public void setIntensidade(Intensidade intensidade) {
-		this.intensidade = intensidade;
 	}
 }

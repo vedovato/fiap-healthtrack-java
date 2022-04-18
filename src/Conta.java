@@ -1,5 +1,4 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import utils.DateTime;
 
 public class Conta extends Usuario {
 	private String email;
@@ -73,8 +72,10 @@ public class Conta extends Usuario {
 		
 		System.out.println("Proprietário(a): " + this.getNome());
 		System.out.println("Idade: " + this.getIdade());
-		if(this.getTipoLogin().equals("social")) System.out.println("Email: " + this.getEmail());
-		if(this.getTipoLogin().equals("comum")) System.out.println("Telefone: " + this.getTelefone());
+		if(this.getTipoLogin().equals("social") || this.getEmail() != null)
+			System.out.println("Email: " + this.getEmail());
+		if(this.getTipoLogin().equals("comum") || this.getTelefone() != null)
+			System.out.println("Telefone: " + this.getTelefone());
 		System.out.println("Senha: ******");
 		System.out.println("Status da Conta: " + this.parseStatusPerfil());
 		System.out.println("Tipo de Login: " + this.getTipoLogin());
@@ -138,9 +139,7 @@ public class Conta extends Usuario {
 	}
 
 	private void setUltimoLogin() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
-		LocalDateTime now = LocalDateTime.now();
-		this.ultimoLogin = dtf.format(now);
+		this.ultimoLogin = new DateTime().now();
 	}
 
 	public boolean isLogado() {
