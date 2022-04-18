@@ -5,7 +5,6 @@ public class Exercicio {
 	public Exercicio(String nome, float quantidade) {
 		this.setQuantidade(quantidade);
 		this.setNome(nome);
-
 	}
 
 	// -----------------------------------------------

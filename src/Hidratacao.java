@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import utils.DateTime;
 
-final class Hidratacao extends Usuario {
+final class Hidratacao {
 	private float quantidade;
 	private String dtInclusao;
 	
