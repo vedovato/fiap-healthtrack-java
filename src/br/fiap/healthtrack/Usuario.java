@@ -22,7 +22,7 @@ public class Usuario {
 	
 	// -----------------------------------------------
 
-	public String getNome() {
+	protected String getNome() {
 		return nome;
 	}
 
@@ -30,7 +30,7 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public int getIdade() {
+	protected int getIdade() {
 		return idade;
 	}
 
@@ -38,7 +38,7 @@ public class Usuario {
 		this.idade = idade;
 	}
 
-	public String getSexo() {
+	protected String getSexo() {
 		return sexo;
 	}
 
@@ -46,7 +46,7 @@ public class Usuario {
 		this.sexo = sexo;
 	}
 
-	public String getDtNascimento() {
+	protected String getDtNascimento() {
 		return dtNascimento;
 	}
 

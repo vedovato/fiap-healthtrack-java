@@ -99,6 +99,7 @@ public class Conta extends Usuario {
 			System.out.println("Email: " + this.getEmail());
 		if(this.getTipoLogin().equals("comum") || this.getTelefone() != null)
 			System.out.println("Telefone: " + this.getTelefone());
+		System.out.println("Nascimento: " + this.getDtNascimento());
 		System.out.println("Senha: ******");
 		System.out.println("Status da Conta: " + this.parseStatusPerfil());
 		System.out.println("Tipo de Login: " + this.getTipoLogin());
