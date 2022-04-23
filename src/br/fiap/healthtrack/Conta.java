@@ -1,4 +1,5 @@
 package br.fiap.healthtrack;
+import java.time.LocalDateTime;
 import br.fiap.healthtrack.utils.DateTime;
 
 /**
@@ -9,7 +10,7 @@ public class Conta extends Usuario {
 	private String senha;
 	private String telefone;
 	private String tipoLogin;
-	private String ultimoLogin;
+	private LocalDateTime ultimoLogin;
 	private boolean statusPerfil;
 	private boolean logado;
 	
@@ -103,28 +104,8 @@ public class Conta extends Usuario {
 		System.out.println("Status da Conta: " + this.parseStatusPerfil());
 		System.out.println("Tipo de Login: " + this.getTipoLogin());
 		System.out.println("Ultimo Login: " + this.parseUltimoLogin());
-	}
+	}	
 	
-	/**
-	 * Realiza transformação de op. lógico para texto
-	 * @return Data do último login ou "Nunca"
-	 */
-	private String parseUltimoLogin() {
-		String login = this.getUltimoLogin() == null ? "Nunca" : this.getUltimoLogin();
-		return login;
-	}
-	
-	/**
-	 * Realiza transformação de op. lógico para texto
-	 * @return Ativo ou Inativo
-	 */
-	private String parseStatusPerfil() {
-		String status = this.getStatusPerfil() ? "ativo" : "inativo";
-		return status;
-	}
-	
-	// -----------------------------------------------
-
 	public String getEmail() {
 		return email;
 	}
@@ -153,7 +134,7 @@ public class Conta extends Usuario {
 		return tipoLogin;
 	}
 
-	private void setTipoLogin(String tipoLogin) {
+	public void setTipoLogin(String tipoLogin) {
 		this.tipoLogin = tipoLogin;
 	}
 
@@ -165,23 +146,47 @@ public class Conta extends Usuario {
 		this.statusPerfil = statusPerfil;
 	}
 
-	private String getUltimoLogin() {
-		return ultimoLogin;
+	public LocalDateTime getUltimoLogin() {
+		return this.ultimoLogin;
 	}
 
 	/**
 	 * Registra a data atual
 	 * @see br.fiap.healthtrack.utils
 	 */
-	private void setUltimoLogin() {
-		this.ultimoLogin = new DateTime().now();
+	public void setUltimoLogin() {
+		this.ultimoLogin = new DateTime().get();
 	}
 
 	public boolean isLogado() {
 		return logado;
 	}
 
-	private void setLogado(boolean logado) {
+	public void setLogado(boolean logado) {
 		this.logado = logado;
+	}
+	
+	
+	private String getUltimoLoginFormat() {
+		if (this.ultimoLogin == null) 
+			return "Nunca";		
+		return new DateTime().dateTimeToString(this.ultimoLogin);		
+	}
+	
+	/**
+	 * Realiza transformação de op. lógico para texto
+	 * @return Data do último login ou "Nunca"
+	 */
+	private String parseUltimoLogin() {
+		return this.getUltimoLoginFormat();
+	}
+	
+	/**
+	 * Realiza transformação de op. lógico para texto
+	 * @return Ativo ou Inativo
+	 */
+	private String parseStatusPerfil() {
+		String status = this.getStatusPerfil() ? "ativo" : "inativo";
+		return status;
 	}
 }

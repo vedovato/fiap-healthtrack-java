@@ -1,4 +1,5 @@
 package br.fiap.healthtrack;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import br.fiap.healthtrack.utils.DateTime;
@@ -10,7 +11,7 @@ final class Atividade {
 	private String tipoMensuracao;
 	private String intensidade;
 	private Exercicio exercicio;
-	private String dtInclusao;
+	private LocalDateTime dtInclusao;
 	
 	ArrayList<Atividade> atividadeArray = new ArrayList<>();
 	
@@ -21,7 +22,7 @@ final class Atividade {
 	 * @param intensidade: Fácil/Regular/Difícil/Foo
 	 * @see classe Exercicio
 	 */
-	protected void adicionar(Exercicio ex, String tipoMensuracao, String intensidade) {
+	public void adicionar(Exercicio ex, String tipoMensuracao, String intensidade) {
 		Atividade item = new Atividade();
 		item.setExercicio(ex);
 		item.setTipoMensuracao(tipoMensuracao);
@@ -35,7 +36,7 @@ final class Atividade {
 	/**
 	 * Exibe todas as atividades registradas
 	 */
-	protected void visualizar() {
+	public void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE ATIVIDADES -----");
 		
 		if(atividadeArray.size() == 0) {
@@ -55,40 +56,44 @@ final class Atividade {
 		return this.getDtInclusao() + " | [atividade=" + this.getExercicio().getNome() + ", dist/tempo=" + this.getExercicio().getQuantidade() + " " + this.getTipoMensuracao() + ", intensidade=" + this.getIntensidade() + "]";
 	}
 
-	private String getTipoMensuracao() {
-		return tipoMensuracao;
+	public String getTipoMensuracao() {
+		return this.tipoMensuracao;
 	}
 
-	private void setTipoMensuracao(String tipoMensuracao) {
+	public void setTipoMensuracao(String tipoMensuracao) {
 		this.tipoMensuracao = tipoMensuracao;
 	}
 
-	private String getIntensidade() {
-		return intensidade;
+	public String getIntensidade() {
+		return this.intensidade;
 	}
 
-	private void setIntensidade(String intensidade) {
+	public void setIntensidade(String intensidade) {
 		this.intensidade = intensidade;
 	}
 
-	private Exercicio getExercicio() {
-		return exercicio;
+	public Exercicio getExercicio() {
+		return this.exercicio;
 	}
 
-	private void setExercicio(Exercicio exercicio) {
+	public void setExercicio(Exercicio exercicio) {
 		this.exercicio = exercicio;
 	}
 
-	private String getDtInclusao() {
-		return dtInclusao;
+	public LocalDateTime getDtInclusao() {
+		return this.dtInclusao;
+	}
+	
+	public String getDtInclusaoFormat() {
+		return new DateTime().dateTimeToString(this.dtInclusao);	
 	}
 	
 	/**
 	 * Registra a data atual
 	 * @see br.fiap.healthtrack.utils
 	 */
-	private void setDtInclusao() {
-		this.dtInclusao = new DateTime().now();
+	public void setDtInclusao() {
+		this.dtInclusao = new DateTime().get();
 	}
 	
 }

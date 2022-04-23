@@ -1,32 +1,36 @@
 package br.fiap.healthtrack;
+
+import java.time.LocalDateTime;
+
+import br.fiap.healthtrack.utils.DateTime;
+
 public class Usuario {
 	private String nome;
 	private int idade;
 	private String sexo;
-	private String dtNascimento;
+	private LocalDateTime dtNascimento;
 	
 	protected final Historico historico = new Historico();
 	protected final Hidratacao hidratacao = new Hidratacao();
 	protected final Atividade atividade = new Atividade();
 	
-	protected void setDadosUsuario(String nome, int idade, String sexo, String dtNascimento) {
-		this.setDtNascimento(dtNascimento);
+	
+	public void setDadosUsuario(String nome, int idade, String sexo, String dtNascimento) {
+		this.setDtNascimento(new DateTime().StringToDate(dtNascimento));
 		this.setIdade(idade);
 		this.setNome(nome);
 		this.setSexo(sexo);
 	}
-
-	protected void exibirInformacoes() {
+	
+	public void exibirInformacoes() {
 		System.out.println("Usuario { nome=" + this.getNome() + ", idade=" + this.getIdade() + ", sexo=" + this.getSexo() + ", nasc=" + this.getDtNascimento() + "}");
 	}
 	
-	// -----------------------------------------------
-
 	public String getNome() {
 		return nome;
 	}
 
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -34,7 +38,7 @@ public class Usuario {
 		return idade;
 	}
 
-	protected void setIdade(int idade) {
+	public void setIdade(int idade) {
 		this.idade = idade;
 	}
 
@@ -42,15 +46,19 @@ public class Usuario {
 		return sexo;
 	}
 
-	protected void setSexo(String sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-	public String getDtNascimento() {
-		return dtNascimento;
+	public LocalDateTime getDtNascimento() {
+		return this.dtNascimento;
+	}
+	
+	public String getDtNascimentoFormat() {
+		return new DateTime().dateTimeToString(this.dtNascimento);
 	}
 
-	protected void setDtNascimento(String dtNascimento) {
+	public void setDtNascimento(LocalDateTime dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 }

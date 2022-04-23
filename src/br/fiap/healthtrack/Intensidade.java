@@ -3,13 +3,13 @@ package br.fiap.healthtrack;
 /**
  * Abstração para Exercicios físicos
  */
-final class Exercicio {
+final class Intensidade {
 	private String nome;
-	private float quantidade;
+	private int emoji;
 
-	public Exercicio(String nome, float quantidade) {
-		this.setQuantidade(quantidade);
+	public Intensidade(String nome, int emoji) {
 		this.setNome(nome);
+		this.setEmoji(emoji);
 	}
 
 	// -----------------------------------------------
@@ -22,11 +22,11 @@ final class Exercicio {
 		this.nome = nome;
 	}
 
-	public float getQuantidade() {
-		return this.quantidade;
+	public int getEmoji() {
+		return this.emoji;
 	}
 
-	public void setQuantidade(float quantidade) {
-		this.quantidade = quantidade;
+	public void setEmoji(int emoji) {
+		this.emoji = emoji;
 	}
 }

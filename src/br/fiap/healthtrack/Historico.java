@@ -1,6 +1,6 @@
 package br.fiap.healthtrack;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import br.fiap.healthtrack.utils.DateTime;
 
 /**
@@ -9,16 +9,20 @@ import br.fiap.healthtrack.utils.DateTime;
 final class Historico {
  	private float altura;
 	private float peso;
-	private String dtInclusao;
-	
+	private LocalDateTime dtInclusao;
 	private ArrayList<Historico> historicoArray = new ArrayList<>();
 
+	@Override
+	public String toString() {
+		return this.getDtInclusaoFormat() + " | [altura=" + this.getAltura() + "cm, peso=" + this.getPeso() + "kg" + ", IMC=" + this.exibirIMC() + "]";
+	}
+	
 	/**
 	 * Adiciona um registro no histórico
 	 * @param altura do usuario (ex: 1.72)
 	 * @param peso do usuario (ex: 88.4)
 	 */
-	protected void adicionar(float altura, float peso) {
+	public void adicionar(float altura, float peso) {
 		Historico item = new Historico();
 		item.setDtInclusao();
 		item.setAltura(altura);
@@ -32,7 +36,7 @@ final class Historico {
 	 * Exibe todo o histórico inserido
 	 * @see adicionar
 	 */
-	protected void visualizar() {
+	public void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE SAÚDE -----");
 		
 		if(historicoArray.size() == 0) {
@@ -50,7 +54,7 @@ final class Historico {
 	 * @see https://calculosimples.com/imc.html
 	 * @return Grau de obesidade aproximado
 	 */
-	private String exibirIMC() {
+	public String exibirIMC() {
 		float alturaQuadrado = this.getAltura() * this.getAltura();
 		float imc =this.getPeso() / alturaQuadrado;
 		
@@ -61,31 +65,31 @@ final class Historico {
 		else { return "Obesidade grave"; }
 	}
 	
-	// -----------------------------------------------
 	
-	@Override
-	public String toString() {
-		return this.getDtInclusao() + " | [altura=" + this.getAltura() + "cm, peso=" + this.getPeso() + "kg" + ", IMC=" + this.exibirIMC() + "]";
-	}
 	
-	private float getAltura() {
+	public float getAltura() {
 		return altura;
 	}
 
-	private void setAltura(float altura) {
+	public void setAltura(float altura) {
 		this.altura = altura;
 	}
 
-	private float getPeso() {
+	public float getPeso() {
 		return peso;
 	}
 
-	private void setPeso(float peso) {
+	public void setPeso(float peso) {
 		this.peso = peso;
 	}
 
-	private String getDtInclusao() {
-		return dtInclusao;
+	@SuppressWarnings("unused")
+	public LocalDateTime getDtInclusao() {
+		return this.dtInclusao;
+	}
+	
+	public String getDtInclusaoFormat() {
+		return new DateTime().dateTimeToString(this.dtInclusao);
 	}
 
 	/**
@@ -93,7 +97,7 @@ final class Historico {
 	 * @see br.fiap.healthtrack.utils
 	 */
 	private void setDtInclusao() {
-		this.dtInclusao = new DateTime().now();
+		this.dtInclusao = new DateTime().get();
 	}
 	
 }

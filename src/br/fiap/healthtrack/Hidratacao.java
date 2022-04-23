@@ -1,4 +1,5 @@
 package br.fiap.healthtrack;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import br.fiap.healthtrack.utils.DateTime;
@@ -8,7 +9,7 @@ import br.fiap.healthtrack.utils.DateTime;
  */
 final class Hidratacao {
 	private float quantidade;
-	private String dtInclusao;
+	private LocalDateTime dtInclusao;
 	
 	private ArrayList<Hidratacao> hidratacaoArray = new ArrayList<>();
 
@@ -16,7 +17,7 @@ final class Hidratacao {
 	 * Inclui consumo de líquido
 	 * @param quantidade em ml
 	 */
-	protected void adicionar(float quantidade) {
+	public void adicionar(float quantidade) {
 		Hidratacao item = new Hidratacao();
 		item.setQuantidade(quantidade);
 		item.setDtInclusao();
@@ -28,7 +29,7 @@ final class Hidratacao {
 	/**
 	 * Exibe total ingerido + histórico completo registrado
 	 */
-	protected void visualizar() {
+	public void visualizar() {
 		System.out.println("\n----- HISTÓRICO DE HIDRATAÇÃO -----");
 		
 		if(hidratacaoArray.size() == 0) {
@@ -55,24 +56,28 @@ final class Hidratacao {
 		return this.getDtInclusao() + " | [quantidade=" + this.getQuantidade() + "]";
 	}
 
-	private float getQuantidade() {
-		return quantidade;
+	public float getQuantidade() {
+		return this.quantidade;
 	}
 
-	private void setQuantidade(float quantidade) {
+	public void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	private String getDtInclusao() {
-		return dtInclusao;
+	public String getDtInclusaoFormat() {
+		return new DateTime().dateTimeToString(this.dtInclusao);
+	}
+	
+	public LocalDateTime getDtInclusao() {
+		return this.dtInclusao;
 	}
 	
 	/**
 	 * Registra a data atual
 	 * @see br.fiap.healthtrack.utils
 	 */
-	private void setDtInclusao() {
-		this.dtInclusao = new DateTime().now();
+	public void setDtInclusao() {
+		this.dtInclusao = new DateTime().get();
 	}
-
+	
 }
