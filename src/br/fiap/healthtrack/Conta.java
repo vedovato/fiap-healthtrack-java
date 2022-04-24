@@ -5,6 +5,7 @@ import br.fiap.healthtrack.utils.DateTime;
  * Abstração para Conta do sistema com agregação de Usuario
  */
 public class Conta extends Usuario {
+	
 	private String email;
 	private String senha;
 	private String telefone;
